@@ -1,78 +1,185 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agri - Fantasy Cricket Dashboard</title>
+  <title>Agri - My11Circle Style Fantasy Cricket</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <header class="navbar">
-    <div class="logo">Agri</div>
-    <div class="nav-right">
-      <span class="wallet">💰 Balance: ₹500</span>
-      <button class="profile-btn">Profile</button>
+
+  <!-- Top Brand Navigation Bar -->
+  <header class="top-navbar">
+    <div class="brand">
+      <span class="logo-text">Agri</span>
+      <span class="pro-tag">PRO</span>
+    </div>
+    <div class="user-actions">
+      <div class="wallet-badge">
+        <i class="fa-solid fa-wallet"></i>
+        <span>₹500</span>
+      </div>
+      <button class="add-cash-btn">+ ADD CASH</button>
+      <div class="user-avatar">
+        <i class="fa-solid fa-user"></i>
+      </div>
     </div>
   </header>
 
-  <!-- Main Dashboard Container -->
-  <main class="dashboard">
-    <!-- Center Background Text -->
-    <div class="background-text">CRICKET</div>
+  <!-- Sports Category Navigation (My11Circle Style) -->
+  <nav class="sports-tabs">
+    <button class="tab-item active"><i class="fa-solid fa-baseball-bat-ball"></i> CRICKET</button>
+    <button class="tab-item"><i class="fa-solid fa-football"></i> FOOTBALL</button>
+    <button class="tab-item"><i class="fa-solid fa-basketball"></i> BASKETBALL</button>
+    <button class="tab-item"><i class="fa-solid fa-trophy"></i> LEAGUES</button>
+  </nav>
 
-    <!-- Dashboard Content -->
-    <section class="dashboard-content">
-      <h2>Upcoming Matches</h2>
-      <p class="subtitle">Dream11 style fantasy contests join karein</p>
+  <!-- Main Content Layout -->
+  <main class="app-container">
+    
+    <!-- Background Watermark -->
+    <div class="center-watermark">CRICKET</div>
 
-      <div class="matches-grid">
-        <!-- Match Card 1 -->
-        <div class="match-card">
-          <div class="league">T20 World Cup</div>
-          <div class="teams">
-            <span class="team">IND</span>
-            <span class="vs">VS</span>
-            <span class="team">PAK</span>
+    <!-- Promotional Hero Banner -->
+    <div class="promo-banner">
+      <div class="banner-content">
+        <span class="mega-tag">MEGA CONTEST</span>
+        <h2>WIN ₹1 CRORE + THAR</h2>
+        <p>1st Prize Guaranteed | Entry ₹49</p>
+      </div>
+      <button class="banner-btn">JOIN NOW</button>
+    </div>
+
+    <!-- Sub-Header: Fixture Status Tabs -->
+    <div class="section-nav">
+      <div class="nav-links">
+        <span class="active">Upcoming</span>
+        <span>Live</span>
+        <span>Completed</span>
+      </div>
+    </div>
+
+    <!-- Match Cards List -->
+    <section class="matches-list">
+
+      <!-- Match Card 1 -->
+      <div class="my11-card">
+        <div class="card-header">
+          <span class="league-name">T20 WORLD CUP 2026</span>
+          <span class="match-badge live"><i class="fa-solid fa-clock"></i> 2h 15m left</span>
+        </div>
+
+        <div class="teams-section">
+          <div class="team-info">
+            <div class="flag-icon ind">IND</div>
+            <span class="team-code">INDIA</span>
           </div>
-          <div class="match-time">Start in 2h 30m</div>
-          <div class="contest-info">
-            <span>Mega Contest: ₹1 Crore</span>
-            <button class="join-btn">Join ₹49</button>
+
+          <div class="versus-badge">
+            <span class="vs-text">VS</span>
+          </div>
+
+          <div class="team-info">
+            <div class="flag-icon pak">PAK</div>
+            <span class="team-code">PAKISTAN</span>
           </div>
         </div>
 
-        <!-- Match Card 2 -->
-        <div class="match-card">
-          <div class="league">IPL 2026</div>
-          <div class="teams">
-            <span class="team">CSK</span>
-            <span class="vs">VS</span>
-            <span class="team">RCB</span>
+        <div class="card-footer">
+          <div class="prize-tag">
+            <i class="fa-solid fa-trophy"></i> Mega Prize <span>₹1 Crore</span>
           </div>
-          <div class="match-time">Today, 7:30 PM</div>
-          <div class="contest-info">
-            <span>Prize Pool: ₹50 Lakhs</span>
-            <button class="join-btn">Join ₹33</button>
-          </div>
-        </div>
-
-        <!-- Match Card 3 -->
-        <div class="match-card">
-          <div class="league">Big Bash League</div>
-          <div class="teams">
-            <span class="team">AUS</span>
-            <span class="vs">VS</span>
-            <span class="team">ENG</span>
-          </div>
-          <div class="match-time">Tomorrow, 1:30 PM</div>
-          <div class="contest-info">
-            <span>Prize Pool: ₹20 Lakhs</span>
-            <button class="join-btn">Join ₹19</button>
-          </div>
+          <button class="action-btn">JOIN CONTEST</button>
         </div>
       </div>
+
+      <!-- Match Card 2 -->
+      <div class="my11-card">
+        <div class="card-header">
+          <span class="league-name">INDIAN T20 LEAGUE</span>
+          <span class="match-badge"><i class="fa-solid fa-clock"></i> Today, 7:30 PM</span>
+        </div>
+
+        <div class="teams-section">
+          <div class="team-info">
+            <div class="flag-icon csk">CSK</div>
+            <span class="team-code">CHENNAI</span>
+          </div>
+
+          <div class="versus-badge">
+            <span class="vs-text">VS</span>
+          </div>
+
+          <div class="team-info">
+            <div class="flag-icon rcb">RCB</div>
+            <span class="team-code">BANGALORE</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="prize-tag">
+            <i class="fa-solid fa-trophy"></i> Prize Pool <span>₹50 Lakhs</span>
+          </div>
+          <button class="action-btn">JOIN CONTEST</button>
+        </div>
+      </div>
+
+      <!-- Match Card 3 -->
+      <div class="my11-card">
+        <div class="card-header">
+          <span class="league-name">AUSTRALIA T20 LEAGUE</span>
+          <span class="match-badge"><i class="fa-solid fa-clock"></i> Tomorrow, 1:30 PM</span>
+        </div>
+
+        <div class="teams-section">
+          <div class="team-info">
+            <div class="flag-icon aus">AUS</div>
+            <span class="team-code">AUSTRALIA</span>
+          </div>
+
+          <div class="versus-badge">
+            <span class="vs-text">VS</span>
+          </div>
+
+          <div class="team-info">
+            <div class="flag-icon eng">ENG</div>
+            <span class="team-code">ENGLAND</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="prize-tag">
+            <i class="fa-solid fa-trophy"></i> Prize Pool <span>₹25 Lakhs</span>
+          </div>
+          <button class="action-btn">JOIN CONTEST</button>
+        </div>
+      </div>
+
     </section>
+
   </main>
+
+  <!-- Mobile Bottom Navigation Bar (My11Circle App Standard) -->
+  <footer class="bottom-nav">
+    <div class="nav-tab active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="nav-tab">
+      <i class="fa-solid fa-list-check"></i>
+      <span>My Matches</span>
+    </div>
+    <div class="nav-tab">
+      <i class="fa-solid fa-crown"></i>
+      <span>Winners</span>
+    </div>
+    <div class="nav-tab">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+      <span>More</span>
+    </div>
+  </footer>
+
 </body>
 </html>
