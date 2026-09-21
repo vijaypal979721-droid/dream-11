@@ -9,12 +9,12 @@
 </head>
 <body>
 
-  <!-- Background Lighting & Watermark -->
+  <!-- Dynamic Glowing Background -->
   <div class="bg-glow bg-glow-1"></div>
   <div class="bg-glow bg-glow-2"></div>
   <div class="center-watermark">CRICKET</div>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Navigation Header -->
   <header class="app-header">
     <div class="brand">
       <span class="logo-text">Agri</span>
@@ -26,9 +26,7 @@
         <span id="wallet-balance">₹500</span>
       </div>
       <button class="add-cash-btn" onclick="openWalletModal()">+ ADD</button>
-      <div class="profile-icon">
-        <i class="fa-solid fa-user"></i>
-      </div>
+      <div class="profile-icon"><i class="fa-solid fa-user"></i></div>
     </div>
   </header>
 
@@ -43,209 +41,169 @@
   <!-- Main App Layout -->
   <main class="app-body">
 
-    <!-- Hero Jackpot Banner -->
-    <section class="hero-banner">
-      <div class="banner-tag">MEGA LEAGUE</div>
-      <h2>WIN ₹1 CRORE + THAR</h2>
-      <p>Guaranteed 1st Prize | Entry Fee ₹49</p>
-      <button class="banner-cta" onclick="openTeamBuilder('IND VS PAK')">CREATE TEAM NOW</button>
-    </section>
-
-    <!-- Match Status Tabs -->
-    <div class="matches-filter">
-      <span class="filter-item active" onclick="filterMatches(this, 'upcoming')">Upcoming</span>
-      <span class="filter-item" onclick="filterMatches(this, 'live')">Live (1)</span>
-      <span class="filter-item" onclick="filterMatches(this, 'completed')">Completed</span>
+    <!-- App Sub-Sections Tabs -->
+    <div class="view-tabs">
+      <button class="v-tab active" onclick="switchMainView(this, 'home-view')">Home</button>
+      <button class="v-tab" onclick="switchMainView(this, 'my-teams-view')">My Teams (<span id="team-count-badge">0</span>)</button>
+      <button class="v-tab" onclick="switchMainView(this, 'leaderboard-view')">Leaderboard</button>
+      <button class="v-tab" onclick="switchMainView(this, 'pts-system-view')">PTS Rules</button>
     </div>
 
-    <!-- Dynamic Match Cards Container -->
-    <section class="matches-container" id="matches-list">
-      
-      <!-- Match Card 1 -->
-      <div class="match-card" data-status="upcoming">
-        <div class="card-top">
-          <span class="league-title">T20 WORLD CUP 2026</span>
-          <span class="timer live"><i class="fa-solid fa-clock"></i> 2h 15m left</span>
-        </div>
-        <div class="teams-versus">
-          <div class="team">
-            <div class="flag ind">IND</div>
-            <span class="team-name">INDIA</span>
-          </div>
-          <div class="vs-badge">VS</div>
-          <div class="team">
-            <div class="flag pak">PAK</div>
-            <span class="team-name">PAKISTAN</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <div class="prize"><i class="fa-solid fa-trophy"></i> Prize: <span>₹1 Crore</span></div>
-          <button class="join-btn" onclick="openTeamBuilder('IND VS PAK')">Join Contest (₹49)</button>
-        </div>
+    <!-- HOME VIEW -->
+    <div id="home-view" class="view-content active">
+      <section class="hero-banner">
+        <div class="banner-tag">MEGA LEAGUE</div>
+        <h2>WIN ₹1 CRORE + THAR</h2>
+        <p>Guaranteed 1st Prize | Entry Fee ₹49</p>
+        <button class="banner-cta" onclick="openTeamBuilder('IND VS PAK')">CREATE TEAM NOW</button>
+      </section>
+
+      <div class="matches-filter">
+        <span class="filter-item active" onclick="filterMatches(this, 'upcoming')">Upcoming</span>
+        <span class="filter-item" onclick="filterMatches(this, 'live')">Live (1)</span>
+        <span class="filter-item" onclick="filterMatches(this, 'completed')">Completed</span>
       </div>
 
-      <!-- Match Card 2 -->
-      <div class="match-card" data-status="upcoming">
-        <div class="card-top">
-          <span class="league-title">INDIAN T20 LEAGUE</span>
-          <span class="timer"><i class="fa-solid fa-clock"></i> Today, 7:30 PM</span>
-        </div>
-        <div class="teams-versus">
-          <div class="team">
-            <div class="flag csk">CSK</div>
-            <span class="team-name">CHENNAI</span>
+      <section class="matches-container" id="matches-list">
+        <!-- Match 1 -->
+        <div class="match-card" data-status="upcoming">
+          <div class="card-top">
+            <span class="league-title">T20 WORLD CUP 2026</span>
+            <span class="timer live"><i class="fa-solid fa-clock"></i> 2h 15m left</span>
           </div>
-          <div class="vs-badge">VS</div>
-          <div class="team">
-            <div class="flag rcb">RCB</div>
-            <span class="team-name">BANGALORE</span>
+          <div class="teams-versus">
+            <div class="team"><div class="flag ind">IND</div><span class="team-name">INDIA</span></div>
+            <div class="vs-badge">VS</div>
+            <div class="team"><div class="flag pak">PAK</div><span class="team-name">PAKISTAN</span></div>
           </div>
-        </div>
-        <div class="card-bottom">
-          <div class="prize"><i class="fa-solid fa-trophy"></i> Prize: <span>₹50 Lakhs</span></div>
-          <button class="join-btn" onclick="openTeamBuilder('CSK VS RCB')">Join Contest (₹33)</button>
-        </div>
-      </div>
-
-      <!-- Match Card 3 (Live Match) -->
-      <div class="match-card" data-status="live" style="display: none;">
-        <div class="card-top">
-          <span class="league-title">ASIA T20 CUP</span>
-          <span class="timer live"><i class="fa-solid fa-circle"></i> LIVE 2nd Innings</span>
-        </div>
-        <div class="teams-versus">
-          <div class="team">
-            <div class="flag aus">AUS</div>
-            <span class="team-name">184/5 (20)</span>
-          </div>
-          <div class="vs-badge">VS</div>
-          <div class="team">
-            <div class="flag eng">ENG</div>
-            <span class="team-name">142/3 (15.2)</span>
+          <div class="card-bottom">
+            <div class="prize"><i class="fa-solid fa-trophy"></i> Prize: <span>₹1 Crore</span></div>
+            <button class="join-btn" onclick="openTeamBuilder('IND VS PAK')">Join Contest (₹49)</button>
           </div>
         </div>
-        <div class="card-bottom">
-          <div class="prize"><i class="fa-solid fa-fire"></i> Your Team Rank: <span>#124</span></div>
-          <button class="join-btn live-btn" onclick="alert('Live Scores Updating...')">View Scorecard</button>
-        </div>
-      </div>
 
-    </section>
-
-    <!-- App Features Highlights -->
-    <section class="features-highlights">
-      <div class="feature-item">
-        <i class="fa-solid fa-bolt"></i>
-        <div>
-          <h4>Instant Withdrawals</h4>
-          <p>Bank & UPI Transfer in 1 Sec</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <i class="fa-solid fa-shield-halved"></i>
-        <div>
-          <h4>100% Safe & Secure</h4>
-          <p>Verified Fair Play Policy</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- User Reviews & Interactive Submission Section -->
-    <section class="reviews-section">
-      <div class="section-title">
-        <h3>Community Reviews</h3>
-        <span class="rating-summary"><i class="fa-solid fa-star"></i> 4.9 / 5</span>
-      </div>
-
-      <!-- Review Input Box -->
-      <div class="add-review-box">
-        <input type="text" id="review-input" placeholder="Apna feedback ya review likhein..." />
-        <button onclick="addReview()"><i class="fa-solid fa-paper-plane"></i></button>
-      </div>
-
-      <!-- Review Grid List -->
-      <div class="reviews-grid" id="reviews-list">
-        <div class="review-card">
-          <div class="reviewer">
-            <div class="avatar">R</div>
-            <div>
-              <h4>Rahul Sharma</h4>
-              <div class="stars">★★★★★</div>
-            </div>
+        <!-- Match 2 -->
+        <div class="match-card" data-status="upcoming">
+          <div class="card-top">
+            <span class="league-title">INDIAN T20 LEAGUE</span>
+            <span class="timer"><i class="fa-solid fa-clock"></i> Today, 7:30 PM</span>
           </div>
-          <p>"Agri app ka UI super fast hai, instant withdrawal direct UPI mein aata hai!"</p>
+          <div class="teams-versus">
+            <div class="team"><div class="flag csk">CSK</div><span class="team-name">CHENNAI</span></div>
+            <div class="vs-badge">VS</div>
+            <div class="team"><div class="flag rcb">RCB</div><span class="team-name">BANGALORE</span></div>
+          </div>
+          <div class="card-bottom">
+            <div class="prize"><i class="fa-solid fa-trophy"></i> Prize: <span>₹50 Lakhs</span></div>
+            <button class="join-btn" onclick="openTeamBuilder('CSK VS RCB')">Join Contest (₹33)</button>
+          </div>
         </div>
 
-        <div class="review-card">
-          <div class="reviewer">
-            <div class="avatar">A</div>
-            <div>
-              <h4>Aman Verma</h4>
-              <div class="stars">★★★★★</div>
-            </div>
+        <!-- Match 3 (Live) -->
+        <div class="match-card" data-status="live" style="display: none;">
+          <div class="card-top">
+            <span class="league-title">ASIA T20 CUP</span>
+            <span class="timer live"><i class="fa-solid fa-circle"></i> LIVE 2nd Innings</span>
           </div>
-          <p>"Cricket background watermark and smooth dark design gives luxury feel!"</p>
+          <div class="teams-versus">
+            <div class="team"><div class="flag aus">AUS</div><span class="team-name">184/5 (20)</span></div>
+            <div class="vs-badge">VS</div>
+            <div class="team"><div class="flag eng">ENG</div><span class="team-name">142/3 (15.2)</span></div>
+          </div>
+          <div class="card-bottom">
+            <div class="prize"><i class="fa-solid fa-fire"></i> Your Team Rank: <span>#124</span></div>
+            <button class="join-btn live-btn" onclick="switchMainView(null, 'leaderboard-view')">View Live Ranks</button>
+          </div>
         </div>
+      </section>
+
+      <!-- Community Reviews Section -->
+      <section class="reviews-section">
+        <div class="section-title">
+          <h3>Community Reviews</h3>
+          <span class="rating-summary"><i class="fa-solid fa-star"></i> 4.9 / 5</span>
+        </div>
+        <div class="add-review-box">
+          <input type="text" id="review-input" placeholder="Apna feedback ya review likhein..." />
+          <button onclick="addReview()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <div class="reviews-grid" id="reviews-list">
+          <div class="review-card">
+            <div class="reviewer"><div class="avatar">R</div><div><h4>Rahul Sharma</h4><div class="stars">★★★★★</div></div></div>
+            <p>"Agri app ka UI super fast hai, instant withdrawal direct UPI mein aata hai!"</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- MY TEAMS VIEW -->
+    <div id="my-teams-view" class="view-content" style="display: none;">
+      <h3>Created Teams</h3>
+      <div id="my-teams-container" class="teams-container">
+        <p class="empty-state">Abhi tak koi team create nahi ki hai. Match select karke team banayein!</p>
       </div>
-    </section>
+    </div>
+
+    <!-- LEADERBOARD VIEW -->
+    <div id="leaderboard-view" class="view-content" style="display: none;">
+      <h3>Live Contest Leaderboard</h3>
+      <div class="leaderboard-list">
+        <div class="rank-row top-1"><span>#1</span><span>Ramesh_11</span><span>384.5 Pts</span></div>
+        <div class="rank-row top-2"><span>#2</span><span>Agri_King</span><span>372.0 Pts</span></div>
+        <div class="rank-row top-3"><span>#3</span><span>CricketPro99</span><span>365.5 Pts</span></div>
+        <div class="rank-row my-rank"><span>#124</span><span>You (Team 1)</span><span id="user-points-display">210.0 Pts</span></div>
+      </div>
+    </div>
+
+    <!-- POINTS SYSTEM VIEW -->
+    <div id="pts-system-view" class="view-content" style="display: none;">
+      <h3>Fantasy Points System</h3>
+      <div class="pts-table">
+        <div class="pts-row"><span>Run</span><span>+1 Pt</span></div>
+        <div class="pts-row"><span>Boundary (4)</span><span>+1 Bonus</span></div>
+        <div class="pts-row"><span>Six (6)</span><span>+2 Bonus</span></div>
+        <div class="pts-row"><span>Wicket (Bowler)</span><span>+25 Pts</span></div>
+        <div class="pts-row"><span>Catch</span><span>+8 Pts</span></div>
+        <div class="pts-row"><span>Captain (C)</span><span>2x Points</span></div>
+        <div class="pts-row"><span>Vice-Captain (VC)</span><span>1.5x Points</span></div>
+      </div>
+    </div>
 
   </main>
 
-  <!-- Interactive Team Creation Modal Window -->
+  <!-- Interactive Team Creation Modal -->
   <div class="modal-overlay" id="team-modal">
     <div class="modal-box">
       <div class="modal-header">
         <h3 id="modal-match-title">Create Fantasy 11</h3>
         <span class="close-btn" onclick="closeTeamBuilder()">&times;</span>
       </div>
-      <div class="modal-body">
+      
+      <!-- Step 1: Select 11 Players -->
+      <div id="step-players">
         <div class="team-selection-tracker">
-          <span>Players Selected: <strong id="player-count">0</strong>/11</span>
-          <span>Credits Left: <strong id="credit-count">100.0</strong></span>
+          <span>Players: <strong id="player-count">0</strong>/11</span>
+          <span>Credits: <strong id="credit-count">100.0</strong></span>
         </div>
-        <div class="player-list">
-          <div class="player-row" onclick="togglePlayer(this, 9.0)">
-            <div class="p-info"><strong>V Kohli</strong> (BAT) - IND</div>
-            <div class="p-credit">9.0 CR <i class="fa-solid fa-plus-circle"></i></div>
-          </div>
-          <div class="player-row" onclick="togglePlayer(this, 9.5)">
-            <div class="p-info"><strong>B Azam</strong> (BAT) - PAK</div>
-            <div class="p-credit">9.5 CR <i class="fa-solid fa-plus-circle"></i></div>
-          </div>
-          <div class="player-row" onclick="togglePlayer(this, 10.0)">
-            <div class="p-info"><strong>J Bumrah</strong> (BOWL) - IND</div>
-            <div class="p-credit">10.0 CR <i class="fa-solid fa-plus-circle"></i></div>
-          </div>
-          <div class="player-row" onclick="togglePlayer(this, 8.5)">
-            <div class="p-info"><strong>S Afridi</strong> (BOWL) - PAK</div>
-            <div class="p-credit">8.5 CR <i class="fa-solid fa-plus-circle"></i></div>
-          </div>
-        </div>
+        <div class="player-list" id="player-list-box"></div>
+        <button class="submit-team-btn" onclick="goToRolesStep()">NEXT: CHOOSE C & VC</button>
       </div>
-      <div class="modal-footer">
-        <button class="submit-team-btn" onclick="confirmTeam()">SAVE & JOIN CONTEST</button>
+
+      <!-- Step 2: Choose Captain (C) & Vice-Captain (VC) -->
+      <div id="step-roles" style="display: none;">
+        <p class="step-desc">Choose Captain (2x Pts) and Vice-Captain (1.5x Pts)</p>
+        <div class="roles-list" id="roles-list-box"></div>
+        <button class="submit-team-btn" onclick="confirmTeam()">OK & SAVE TEAM</button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Bottom App Bar -->
+  <!-- Mobile Bottom Navigation Bar -->
   <footer class="app-bottom-nav">
-    <div class="nav-item active" onclick="navigateTab(this)">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </div>
-    <div class="nav-item" onclick="navigateTab(this)">
-      <i class="fa-solid fa-gamepad"></i>
-      <span>My Contests</span>
-    </div>
-    <div class="nav-item" onclick="navigateTab(this)">
-      <i class="fa-solid fa-trophy"></i>
-      <span>Winners</span>
-    </div>
-    <div class="nav-item" onclick="navigateTab(this)">
-      <i class="fa-solid fa-user"></i>
-      <span>Profile</span>
-    </div>
+    <div class="nav-item active" onclick="switchMainView(this, 'home-view')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+    <div class="nav-item" onclick="switchMainView(this, 'my-teams-view')"><i class="fa-solid fa-gamepad"></i><span>My Contests</span></div>
+    <div class="nav-item" onclick="switchMainView(this, 'leaderboard-view')"><i class="fa-solid fa-trophy"></i><span>Winners</span></div>
+    <div class="nav-item" onclick="switchMainView(this, 'pts-system-view')"><i class="fa-solid fa-chart-line"></i><span>Points</span></div>
   </footer>
 
   <script src="script.js"></script>
